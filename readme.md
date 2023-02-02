@@ -8,11 +8,11 @@ This bash script is used to monitor a directory for new directories of DNA seque
 
 * Modify the following variables in the script to match your local paths:
         src_dir: the path to the source directory to be monitored
-        dest1_dir: the path to the first destination directory
-        dest2_dir: the path to the second destination directory
-        /path/to/parse_sample_sheet.py: the path to the Python script that parses the Illumina sample sheet CSV
+        awmgs_dir: the path to the first destination directory
+        wales_gene_park_dir: the path to the second destination directory
+        get_destination_from_samplesheet.py: the path to the Python script that parses the Illumina sample sheet CSV
 
-* Make the script executable with chmod +x /path/to/rsync_dna_sequencer_data.sh.
+* Make the script executable with chmod +x transfer_data.sh.
 * Set up a cron job to run the script at the desired interval.
 
 ## Details
@@ -20,8 +20,6 @@ This bash script is used to monitor a directory for new directories of DNA seque
 * The script will continuously monitor the source directory for new directories, and rsync the data to one of the two destination directories determined by the Python script.
 
 * If a new directory is found, the script creates a lock file for that directory in /tmp to prevent multiple instances of the script from running on the same directory.
-
-* The rsync command uses the --partial option to ensure that any partially transferred files will be resumed instead of starting over.
 
 * If the source directory doesn't contain a sample sheet CSV or if the destination directory is not recognized, the script will skip that directory and move on to the next one.
 
